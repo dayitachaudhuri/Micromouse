@@ -1,3 +1,7 @@
+import tkinter as tk
+
+root = tk.Tk()
+
 class Maze:
     def __init__(self, h, w, center):
         self.height = h
@@ -21,16 +25,23 @@ class Maze:
         return False
     
     def displayMaze(self, currentX, currentY):
-        for i in range(0,self.height):
-            for j in range(0,self.width):
-                if self.isWall(i,j):
-                    print(" # ", end="")
-                elif i == currentX and j == currentY:
-                    print(" C ", end="")
+        canvas_width = self.width * 20
+        canvas_height = self.height * 20
+        canvas = tk.Canvas(root, width=canvas_width, height=canvas_height)
+        canvas.pack()
+        for row in range(self.width):
+            for col in range(self.height):
+                x1 = col * 20
+                y1 = row * 20
+                x2 = x1 + 20
+                y2 = y1 + 20
+                if self.isWall(row,col):
+                    canvas.create_rectangle(x1, y1, x2, y2, fill='black')
+                elif row == currentX and col == currentY:
+                    canvas.create_rectangle(x1, y1, x2, y2, fill='red')
                 else:
-                    print(" %s " % str(self.maze[i][j]), end="")
-            print()
-        print()
+                    canvas.create_rectangle(x1, y1, x2, y2, fill='white')
+        root.mainloop()
 
     def move(self, initX, initY):
         self.displayMaze(initX, initY)

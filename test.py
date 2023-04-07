@@ -1,59 +1,29 @@
-import random
+import tkinter as tk
 
-def generate_maze(rows, cols):
-    # create a grid with all walls
-    maze = [['#' for j in range(cols)] for i in range(rows)]
+# Set the size of the maze
+maze_size = 4
 
-    # choose a random starting point
-    current_row = random.randint(0, rows - 1)
-    current_col = random.randint(0, cols - 1)
+# Initialize the maze as a 2D array of walls
+maze = [['#' for i in range(maze_size)] for j in range(maze_size)]
 
-    # mark starting point as open
-    maze[current_row][current_col] = ' '
+# Create the Tkinter window and canvas
+root = tk.Tk()
+canvas_width = maze_size * 20
+canvas_height = maze_size * 20
+canvas = tk.Canvas(root, width=canvas_width, height=canvas_height)
+canvas.pack()
 
-    # create a list of directions to move in
-    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+# Draw the maze on the canvas
+for row in range(maze_size):
+    for col in range(maze_size):
+        x1 = col * 20
+        y1 = row * 20
+        x2 = x1 + 20
+        y2 = y1 + 20
+        if maze[row][col] == '#':
+            canvas.create_rectangle(x1, y1, x2, y2, fill='black')
+        else:
+            canvas.create_rectangle(x1, y1, x2, y2, fill='white')
 
-    # iterate until all cells are visited
-    while any('#' in row for row in maze):
-        # shuffle the directions list
-        random.shuffle(directions)
-
-        # check each direction in random order
-        for dx, dy in directions:
-            next_row = current_row + dy
-            next_col = current_col + dx
-
-            # check if next cell is out of bounds
-            if (next_row < 0 or next_row >= rows or
-                next_col < 0 or next_col >= cols):
-                continue
-
-            # check if next cell is already open
-            if maze[next_row][next_col] == ' ':
-                continue
-
-            # carve a path and mark cell as open
-            if dx == 1:
-                maze[current_row][current_col+1] = ' '
-            elif dx == -1:
-                maze[current_row][current_col-1] = ' '
-            elif dy == 1:
-                maze[current_row+1][current_col] = ' '
-            else:
-                maze[current_row-1][current_col] = ' '
-
-            maze[next_row][next_col] = ' '
-
-            # move to the next cell
-            current_row, current_col = next_row, next_col
-
-    return maze
-
-def print_maze(maze):
-    for row in maze:
-        print(' '.join(row))
-
-# example usage
-maze = generate_maze(10, 10)
-print_maze(maze)
+# Start the Tkinter event loop
+root.mainloop()
