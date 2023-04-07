@@ -3,6 +3,8 @@ import tkinter as tk
 root = tk.Tk()
 
 class Maze:
+
+    # Initialise maze
     def __init__(self, h, w, center):
         self.height = h
         self.width = w
@@ -11,19 +13,23 @@ class Maze:
         self.maze[center[0]][center[1]] = 0
         self.cursor = [0,0]
 
+    # Set a Wall
     def setWall(self, x, y):
         self.maze[x][y] = -1
     
+    # Check if current cell is a wall
     def isWall(self, x, y):
         if self.maze[x][y] == -1:
             return True
         return False
     
+    # Check if current position is valid
     def isValidIndex(self, x, y):
         if x >= 0 and y >= 0 and x < self.height and y < self.width:
             return True
         return False
     
+    # Print the maze
     def displayMaze(self, currentX, currentY):
         canvas_width = self.width * 20
         canvas_height = self.height * 20
@@ -43,6 +49,7 @@ class Maze:
                     canvas.create_rectangle(x1, y1, x2, y2, fill='white')
         root.mainloop()
 
+    # DFS function to reach center from start
     def move(self, initX, initY):
         self.displayMaze(initX, initY)
         nextPositions = []
@@ -56,7 +63,8 @@ class Maze:
             self.maze[set[0]][set[1]] = 9999
             if (self.move(set[0], set[1])):
                 return True
-
+            
+    # BFS Function to set distance values for each cell
     def start(self, startID):
         self.cursor = startID
         num = 1
@@ -72,6 +80,8 @@ class Maze:
             num += 1
         self.move(self.cursor[0], self.cursor[1])
     
+
+# Sample Test
 
 newMaze = Maze(4,4,[2,1])
 
