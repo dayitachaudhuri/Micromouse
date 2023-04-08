@@ -1,4 +1,5 @@
 import tkinter as tk
+import time
 
 root = tk.Tk()
 root.title("Maze")
@@ -58,8 +59,11 @@ class Maze:
     # ==================
     # Print the maze
     # ==================
-    def displayMaze(self,currentX, currentY):
+    def displayMaze(self):
+        print("Displayed")
         self.canvas.delete("all")
+        currentX = self.cursor[0]
+        currentY = self.cursor[1]
         for row in range(self.width):
             for col in range(self.height):
                 x1 = col * size
@@ -77,7 +81,8 @@ class Maze:
     # DFS function to reach center from start
     # =======================================
     def move(self, initX, initY):
-        self.displayMaze(initX, initY)
+        self.cursor = [initX, initY]
+        self.displayMaze()
         nextPositions = []
         if [initX,initY] == self.center:
             return True
