@@ -10,9 +10,7 @@ def createMaze(h,w,r,c):
     newMaze.setWall(4,0)
     newMaze.setWall(3,2)  
     newMaze.start([1,2]) 
-
-createMaze(5, 5, 3, 3)
-
+    
 # root = tk.Tk()
 # root.title("Maze")
 # size = 40
@@ -46,11 +44,14 @@ createMaze(5, 5, 3, 3)
 # label4.pack()
 # entry4.pack()
 
-# button = tk.Button(
-#     text="Click me!",
-#     width=25,
-#     height=5,
-#     bg="red",
-#     fg="white",
-#     command = createMaze(h,w,r,c)
-# )
+# # button = tk.Button(
+# #     text="Click me!",
+# #     width=25,
+# #     height=5,
+# #     bg="red",
+# #     fg="white",
+# #     command = createMaze(h,w,r,c)
+# # )
+
+createMaze(5, 5, 3, 3)
+

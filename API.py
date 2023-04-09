@@ -10,7 +10,6 @@ class Maze:
     # Initialise maze
     # ==================
     def __init__(self, h, w, center):
-
         self.height = h + 2
         self.width = w + 2
         self.center = center
@@ -60,8 +59,6 @@ class Maze:
     # Print the maze
     # ==================
     def displayMaze(self):
-        print("Displayed")
-        self.canvas.delete("all")
         currentX = self.cursor[0]
         currentY = self.cursor[1]
         for row in range(self.width):
@@ -74,14 +71,18 @@ class Maze:
                     self.canvas.create_rectangle(x1, y1, x2, y2, fill='black')
                 elif row == currentX and col == currentY:
                     self.canvas.create_rectangle(x1, y1, x2, y2, fill='red')
+                elif row == self.center[0] and col == self.center[1]:
+                        self.canvas.create_rectangle(x1, y1, x2, y2, fill='green')
                 else:
                     self.canvas.create_rectangle(x1, y1, x2, y2, fill='white')
+        root.update()
 
     # =======================================
     # DFS function to reach center from start
     # =======================================
     def move(self, initX, initY):
         self.cursor = [initX, initY]
+        time.sleep(0.5)
         self.displayMaze()
         nextPositions = []
         if [initX,initY] == self.center:
