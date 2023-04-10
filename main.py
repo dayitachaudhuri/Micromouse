@@ -1,15 +1,46 @@
 import tkinter as tk
 import API
 
-def createMaze(h,w,r,c): 
-    newMaze = API.Maze(h,w,[r,c])
+def createMaze(): 
+    newMaze = API.Maze(10,10,[6,4])
+    newMaze.setWall(1,6)
+    newMaze.setWall(1,7)
+    newMaze.setWall(1,8)
+    newMaze.setWall(1,9)
+    newMaze.setWall(1,10)
     newMaze.setWall(2,1)
     newMaze.setWall(2,2)
-    newMaze.setWall(2,3)
+    newMaze.setWall(2,4)
+    newMaze.setWall(2,5)
     newMaze.setWall(3,1)
-    newMaze.setWall(4,0)
-    newMaze.setWall(3,2)  
-    newMaze.start([1,2]) 
+    newMaze.setWall(3,4)
+    newMaze.setWall(3,5)
+    newMaze.setWall(3,7)
+    newMaze.setWall(3,8)
+    newMaze.setWall(3,9)
+    newMaze.setWall(5,1)
+    newMaze.setWall(5,3)
+    newMaze.setWall(5,5)
+    newMaze.setWall(5,6)
+    newMaze.setWall(5,8)
+    newMaze.setWall(5,10)
+    newMaze.setWall(4,1)
+    newMaze.setWall(4,3)
+    newMaze.setWall(4,7)
+    newMaze.setWall(4,8)
+    newMaze.setWall(6,3)
+    newMaze.setWall(6,8)
+    newMaze.setWall(7,3)
+    newMaze.setWall(7,4)
+    newMaze.setWall(7,5)
+    newMaze.setWall(7,6)
+    newMaze.setWall(7,7)
+    newMaze.setWall(7,8)
+    newMaze.setWall(7,9)
+
+    newMaze.setWall(5,2)
+     
+    newMaze.start([1,1]) 
     
 # root = tk.Tk()
 # root.title("Maze")
@@ -53,5 +84,5 @@ def createMaze(h,w,r,c):
 # #     command = createMaze(h,w,r,c)
 # # )
 
-createMaze(5, 5, 3, 3)
+createMaze()
 
