@@ -38,9 +38,11 @@ def createMaze():
     newMaze.setWall(7,8)
     newMaze.setWall(7,9)
 
-    newMaze.setWall(5,2)
-     
     newMaze.start([1,1]) 
+
+
+createMaze()
+
     
 # root = tk.Tk()
 # root.title("Maze")
@@ -83,6 +85,3 @@ def createMaze():
 # #     fg="white",
 # #     command = createMaze(h,w,r,c)
 # # )
-
-createMaze()
-

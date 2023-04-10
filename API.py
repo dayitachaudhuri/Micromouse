@@ -82,7 +82,7 @@ class Maze:
     # =======================================
     def move(self, initX, initY):
         self.cursor = [initX, initY]
-        time.sleep(0.5)
+        time.sleep(0.2)
         self.displayMaze()
         nextPositions = []
         if [initX,initY] == self.center:
